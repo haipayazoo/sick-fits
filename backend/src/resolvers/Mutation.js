@@ -15,13 +15,23 @@ const Mutations = {
 
     return item;
   },
-  // createDog(parent, args, ctx, info) {
-  //   global.dogs = global.dogs || [];
-  //   // Create a dog!
-  //   const newDogs = { name: args.name };
-  //   global.dogs.push(newDogs);
-  //   return newDog;
-  // },
+
+  updateItem(parent, args, ctx, info) {
+    // First take a copy of the updates
+    const updates = { ...args };
+    // Remove the ID from the updates
+    delete updates.id;
+    // Run the update method
+    return ctx.db.mutation.updateItem(
+      {
+        data: updates,
+        where: {
+          id: args.id,
+        },
+      },
+      info
+    );
+  },
 };
 
 module.exports = Mutations;
