@@ -31,7 +31,7 @@ const UPDATE_ITEM_MUTATION = gql`
 class UpdateItem extends Component {
     state = {};
 
-    handleChange = (e) => {
+    handleChange = e => {
         const { name, type, value } = e.target;
         const val = type === 'number' ? parseFloat(value) : value;
         this.setState({ [name]: val });
@@ -64,7 +64,7 @@ class UpdateItem extends Component {
                     return (
                         <Mutation mutation={UPDATE_ITEM_MUTATION} variables={this.state}>
                             {(updateItem, { loading, error }) => (
-                                <Form onSubmit={(e) => this.updateItem(e, updateItem)}>
+                                <Form onSubmit={e => this.updateItem(e, updateItem)}>
                                     <Error error={error} />
                                     <fieldset disabled={loading} aria-busy={loading}>
                                         <label htmlFor="title">

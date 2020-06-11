@@ -16,7 +16,7 @@ const PAGINATION_QUERY = gql`
     }
 `;
 
-const Pagination = (props) => (
+const Pagination = props => (
     <Query query={PAGINATION_QUERY}>
         {({ data, loading, error }) => {
             if (loading) return <p>Loading...</p>;

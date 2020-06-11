@@ -35,13 +35,13 @@ class CreateItem extends Component {
         price: 0,
     };
 
-    handleChange = (e) => {
+    handleChange = e => {
         const { name, type, value } = e.target;
         const val = type === 'number' ? parseFloat(value) : value;
         this.setState({ [name]: val });
     };
 
-    uploadFile = async (e) => {
+    uploadFile = async e => {
         console.log('Uploading file...');
         const files = e.target.files;
         const data = new FormData();
@@ -64,7 +64,7 @@ class CreateItem extends Component {
             <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
                 {(createItem, { loading, error }) => (
                     <Form
-                        onSubmit={async (e) => {
+                        onSubmit={async e => {
                             // Stop the form from submitting
                             e.preventDefault();
                             // Call the mutation
