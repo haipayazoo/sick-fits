@@ -53,9 +53,11 @@ const Mutations = {
         // Create the user in the database
         const user = await ctx.db.mutation.createUser(
             {
-                ...args,
-                password,
-                permissions: { set: ['USER'] }
+                data: {
+                    ...args,
+                    password,
+                    permissions: { set: ['USER'] }
+                }
             },
             info
         );
