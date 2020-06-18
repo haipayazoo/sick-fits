@@ -38,7 +38,7 @@ class Signup extends Component {
                         }}
                     >
                         <h2>Sign Up for an Account</h2>
-                        <fieldset disabled={loading} aria-busty={loading}>
+                        <fieldset disabled={loading} aria-busy={loading}>
                             <Error error={error} />
                             <label htmlFor="email">
                                 Email
