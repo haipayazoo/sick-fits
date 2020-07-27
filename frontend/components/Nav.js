@@ -12,6 +12,7 @@ const Nav = () => (
                 </Link>
                 {me && (
                     <>
+                        {' '}
                         <Link href="/sell">
                             <a>Sell</a>
                         </Link>
