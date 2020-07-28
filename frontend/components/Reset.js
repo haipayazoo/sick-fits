@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import Form from './styles/Form';
 import Error from './ErrorMessage';
 import PropTypes from 'prop-types';
+import { CURRENT_USER_QUERY } from './User';
 
 const RESET_MUTATION = gql`
     mutation RESET_MUTATION($resetToken: String!, $password: String!, $confirmPassword: String!) {
@@ -42,6 +43,11 @@ class Reset extends Component {
                     password: this.state.password,
                     confirmPassword: this.state.confirmPassword,
                 }}
+                refetchQueries={[
+                    {
+                        query: CURRENT_USER_QUERY,
+                    },
+                ]}
             >
                 {(reset, { error, loading, called }) => (
                     <Form
@@ -49,27 +55,35 @@ class Reset extends Component {
                         onSubmit={async e => {
                             e.preventDefault();
                             await reset();
-                            this.setState({ email: '' });
+                            this.setState({ password: '', confirmPassword: '' });
                         }}
                     >
                         <fieldset disabled={loading} aria-busy={loading}>
-                            <h2>Request a password reset</h2>
+                            <h2>Reset Your Password</h2>
                             <Error error={error} />
-                            {!error && !loading && called && (
-                                <p>Success! Check your email for a reset link!</p>
-                            )}
-                            <label htmlFor="email">
-                                Email
+                            <label htmlFor="password">
+                                Password
                                 <input
-                                    type="email"
-                                    name="email"
-                                    placeholder="email"
-                                    value={this.state.email}
+                                    type="password"
+                                    name="password"
+                                    placeholder="password"
+                                    value={this.state.password}
+                                    onChange={this.saveToState}
+                                />
+                            </label>
+
+                            <label htmlFor="confirmPassword">
+                                Confirm Your Password
+                                <input
+                                    type="password"
+                                    name="confirmPassword"
+                                    placeholder="confirmPassword"
+                                    value={this.state.confirmPassword}
                                     onChange={this.saveToState}
                                 />
                             </label>
                         </fieldset>
-                        <button type="submit">Request Reset!</button>
+                        <button type="submit">Reset Your Password!</button>
                     </Form>
                 )}
             </Mutation>
