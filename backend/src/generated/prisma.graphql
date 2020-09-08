@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/cameron-mathos-2a22d7/haipa-sick-fits/dev
-# timestamp: Tue Sep 08 2020 10:52:17 GMT-0700 (Pacific Daylight Time)
+# timestamp: Tue Sep 08 2020 12:11:47 GMT-0700 (Pacific Daylight Time)
 
 type AggregateItem {
   count: Int!
